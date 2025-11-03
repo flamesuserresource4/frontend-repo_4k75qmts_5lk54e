@@ -1,10 +1,11 @@
 import { Check } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Pricing() {
   const plans = [
     {
       name: "Comece agora",
-      price: "0% + R$ 0,00",
+      price: "R$ 0/mês",
       caption: "para criar conta e gerar links",
       features: [
         "Criação de links de pagamento",
@@ -13,6 +14,7 @@ export default function Pricing() {
         "Suporte por e-mail",
       ],
       highlighted: false,
+      cta: "Criar conta grátis",
     },
     {
       name: "Transação",
@@ -25,36 +27,40 @@ export default function Pricing() {
         "Saques para sua conta",
       ],
       highlighted: true,
+      cta: "Começar a vender",
     },
   ];
 
   return (
-    <section id="precos" className="py-20 bg-white">
+    <section id="precos" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">Preços simples e transparentes</h2>
           <p className="mt-3 text-gray-600">Sem mensalidade. Você só paga quando vender.</p>
         </div>
-        <div className="mt-12 grid lg:grid-cols-2 gap-6">
+        <div className="mt-14 grid lg:grid-cols-2 gap-6">
           {plans.map((p, i) => (
-            <div
+            <motion.div
               key={i}
-              className={`${
-                p.highlighted
-                  ? "ring-2 ring-indigo-600 shadow-lg"
-                  : "ring-1 ring-gray-200"
-              } rounded-2xl bg-white p-8`}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
+              className={`relative rounded-3xl ${
+                p.highlighted ? "ring-2 ring-indigo-600 shadow-xl" : "ring-1 ring-gray-200"
+              } bg-white p-8`}
             >
+              {p.highlighted && (
+                <span className="absolute -top-3 right-6 inline-flex items-center rounded-full bg-indigo-600 px-3 py-1 text-xs font-medium text-white shadow">
+                  Mais popular
+                </span>
+              )}
+
               <div className="flex items-baseline justify-between">
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900">{p.name}</h3>
                   <p className="mt-1 text-sm text-gray-500">{p.caption}</p>
                 </div>
-                {p.highlighted && (
-                  <span className="inline-flex items-center rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700">
-                    Mais popular
-                  </span>
-                )}
               </div>
               <p className="mt-6 text-3xl font-bold text-gray-900">{p.price}</p>
               <ul className="mt-6 space-y-3">
@@ -67,15 +73,15 @@ export default function Pricing() {
               </ul>
               <a
                 href="#"
-                className={`mt-8 inline-flex w-full items-center justify-center rounded-lg px-5 py-3 font-medium transition ${
+                className={`mt-8 inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-medium transition ${
                   p.highlighted
-                    ? "bg-indigo-600 text-white hover:bg-indigo-700"
+                    ? "bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg shadow-indigo-600/20"
                     : "bg-gray-900 text-white hover:bg-black"
                 }`}
               >
-                Criar minha conta
+                {p.cta}
               </a>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

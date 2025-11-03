@@ -23,7 +23,7 @@ export default function App() {
             <a href="#precos" className="hover:text-gray-900">Preços</a>
             <a href="#" className="rounded-lg bg-gray-900 text-white px-4 py-2 hover:bg-black">Entrar</a>
           </nav>
-          <button className="md:hidden" onClick={() => setOpen(!open)}>
+          <button aria-label="Abrir menu" className="md:hidden" onClick={() => setOpen(!open)}>
             <Menu />
           </button>
         </div>
@@ -50,8 +50,8 @@ export default function App() {
               Crie seu primeiro link de pagamento agora e ofereça uma experiência com garantia para seus clientes.
             </p>
             <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
-              <a href="#precos" className="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-5 py-3 text-white font-medium hover:bg-indigo-700">Começar grátis</a>
-              <a href="#como-funciona" className="inline-flex items-center justify-center rounded-lg bg-white px-5 py-3 text-gray-900 font-medium ring-1 ring-gray-200 hover:bg-gray-50">Saiba mais</a>
+              <a href="#precos" className="inline-flex items-center justify-center rounded-xl bg-indigo-600 px-5 py-3 text-white font-medium hover:bg-indigo-700">Começar grátis</a>
+              <a href="#como-funciona" className="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-gray-900 font-medium ring-1 ring-gray-200 hover:bg-gray-50">Saiba mais</a>
             </div>
           </div>
         </section>
